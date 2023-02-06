@@ -4,7 +4,7 @@ Memorable Password Generator
 
 Generates a password that should be able to be easily remembered
 """
-from typing import List, Optional
+from typing import Optional
 import random
 from memorable import _word_bank
 import typer

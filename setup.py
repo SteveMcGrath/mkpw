@@ -37,7 +37,7 @@ The tool was written using the memorable library to enable offline wordlists.
 
 setup(
     name='mkpw',
-    version='1.0.0',
+    version='1.0.1',
     description='Memorable Password Generator',
     long_description=long_description,
     author='Steve McGrath',
@@ -58,11 +58,10 @@ setup(
         'Programming Language :: Python :: 3.12',
     ],
     keywords='password passwords',
-    packages=find_packages(exclude=['docs', 'tests']),
+    py_modules=['make_password'],
     install_requires=[
         'typer>=0.3.2',
         'rich>=10.2.2',
-        'requests>=2.27.1',
         'memorable>=1.0.3',
     ],
     entry_points={
