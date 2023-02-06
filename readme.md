@@ -15,12 +15,16 @@ The tool was written using the memorable library to enable offline wordlists.
  Memorable Password Generator
  Generates a password that should be able to be easily remembered
 
-╭─ Arguments ──────────────────────────────────────────────────────────────────╮
-│   num_words      [NUM_WORDS]  [default: 5]                                   │
-╰──────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ────────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                  │
-╰──────────────────────────────────────────────────────────────────────────────╯
+╭─ Arguments ──────────────────────────────────╮
+│   num_words      [NUM_WORDS]  [default: 5]                                │
+╰─────────────────────────────────────────╯
+╭─ Options ───────────────────────────────────╮
+│ --clip   -c               Send the password to the clipboard              │
+│ --timer  -t      INTEGER  How many seconds to keep the password in in     │
+│                           the clipboard? [default: None]                  │
+│ --help                    Show this message and exit.                     │
+╰─────────────────────────────────────────╯
+
 
 ❯ mkpw
 Generated Pasword: golden-perch+intentionally-IRRELEVANTLY0lumpy7dacentrurus

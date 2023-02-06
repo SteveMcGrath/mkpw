@@ -6,9 +6,15 @@ Generates a password that should be able to be easily remembered
 """
 from typing import Optional
 import random
+import time
 from memorable import _word_bank
+import pyperclip
 import typer
 import rich
+
+
+__VERSION__ = '1.0.2'
+__AUTHOR__ = 'Steve McGrath <steve@mcgrath.sh>'
 
 
 NON_NAMES = list(set(
@@ -21,7 +27,7 @@ app = typer.Typer(add_completion=False)
 
 
 def gen_memorable_password(num_words: int = 5,
-                           kind: Optional[str] = None
+                           kind: Optional[str] = None,
                            ) -> str:
     """
     Generates a memorable password using a word list
@@ -53,8 +59,20 @@ def gen_memorable_password(num_words: int = 5,
     return password[:-1]
 
 
+def clear_clipboard():
+    pyperclip.copy('')
+    rich.print('[dim]Clipboard cleared.[/dim]')
+
+
 @app.command()
-def cli(num_words: int = typer.Argument(5)):
+def cli(num_words: int = typer.Argument(5),
+        clip: bool = typer.Option(False, '--clip', '-c',
+                                  help='Send the password to the clipboard'),
+        timer: Optional[int] = typer.Option(
+            None, '--timer', '-t',
+            help='How many seconds to keep the password in in the clipboard?'
+        )
+        ):
     """
     Memorable Password Generator
 
@@ -62,6 +80,21 @@ def cli(num_words: int = typer.Argument(5)):
     """
     passwd = gen_memorable_password(num_words)
     rich.print(f'Generated Pasword: [bold green]{passwd}[/bold green]')
+    if clip:
+        rich.print('[dim]Copied to clipboard![/dim]')
+        pyperclip.copy(passwd)
+        if timer:
+            rich.print((f'[dim]Waiting {timer} seconds '
+                        'for clipboard expiration...[/dim]'
+                        ))
+            try:
+                start = int(time.time())
+                while int(start + timer) > int(time.time()):
+                    time.sleep(1)
+            except KeyboardInterrupt:
+                clear_clipboard()
+            else:
+                clear_clipboard()
 
 
 if __name__ == '__main__':

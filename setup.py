@@ -25,8 +25,12 @@ The tool was written using the memorable library to enable offline wordlists.
     │   num_words      [NUM_WORDS]  [default: 5]                            │
     ╰───────────────────────────────────────╯
     ╭─ Options ─────────────────────────────────╮
-    │ --help          Show this message and exit.                           │
+    │ --clip   -c               Send the password to the clipboard          │
+    │ --timer  -t      INTEGER  How many seconds to keep the password in in │
+    │                           the clipboard? [default: None]              │
+    │ --help                    Show this message and exit.                 │
     ╰───────────────────────────────────────╯
+
 
     ❯ mkpw
     Generated Pasword: golden-perch+intentionally-IRRELEVANTLY0lumpy7pants
@@ -37,7 +41,7 @@ The tool was written using the memorable library to enable offline wordlists.
 
 setup(
     name='mkpw',
-    version='1.0.1',
+    version='1.0.2',
     description='Memorable Password Generator',
     long_description=long_description,
     author='Steve McGrath',
@@ -63,6 +67,7 @@ setup(
         'typer>=0.3.2',
         'rich>=10.2.2',
         'memorable>=1.0.3',
+        'pyperclip>=1.8.2',
     ],
     entry_points={
         'console_scripts': [
